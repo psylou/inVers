@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title> InVers Spiel mit unbesiegbarer KI </title>
+
+    <style type = "text/css">
+        html,
+        body{
+            width: 100%;
+            height: 100%;
+            padding: 0;
+            margin: 0;
+            font-family: sans-serif;
+        }
+        div *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        #gameboard{
+            max-height: 504px;
+            max-width: 504px;
+            width: 100%;
+            height: 100%;
+            position: relative;
+            margin: 20px auto; 
+        }
+        .cell, .celloob, .celloobnotusable{
+            border: 1px solid rgba(82, 82, 82, 0.7);
+            width: 100%;
+            height: 100%;
+            max-height: 55px;
+            max-width: 55px;
+            float: left;
+            margin: 3px;
+            transition: all 0.5s ease-in-out;
+            border-radius: 5px;
+            padding: 0 0 0 0;
+            font-size: 30pt;
+            z-index: 1;
+            text-align: center;
+        }
+        .celloob{
+            background: rgba(136, 136, 136, 0.7);
+            cursor: pointer;
+        }
+
+        .celloob:hover{
+            color: #fff;
+            background: rgba(87, 87, 255, 0.7);
+            z-index: 2;
+            transform: translate(5px, -10px);
+            animation: solution 0.7 ease-in-out infinite alternate;
+        }
+        .dot{
+            border-radius: 50px;
+            width: 20%;
+            height: 20%;
+            display: inline-block;
+            margin-bottom: 7%;
+            transition: all 0.7s ease-in-out;
+        }
+    </style>
+
+  
+</head>
+<body>
+
+
+<div id="gameboard">
+    <!-- 0 (out of board) -->
+    <div class='celloobnotusable' id='0'></div> <!-- not even usable -->
+    <div class='celloob' id='1' onclick="someoneplays(1)"></div>
+    <div class='celloob' id='2' onclick="someoneplays(2)"></div>
+    <div class='celloob' id='3' onclick="someoneplays(3)"></div>
+    <div class='celloob' id='4' onclick="someoneplays(4)"></div>
+    <div class='celloob' id='5' onclick="someoneplays(5)"></div>
+    <div class='celloob' id='6' onclick="someoneplays(6)"></div>
+    <div class='celloobnotusable' id='7'></div> <!-- not even usable -->
+    <!-- 1 -->
+    <div class='celloob' id='10' onclick="someoneplays(10)"></div> <!-- out of board-->
+    <div class='cell' id='11'><div class='dot' id='11d'></div></div>
+    <div class='cell' id='12'><div class='dot' id='12d'></div></div>
+    <div class='cell' id='13'><div class='dot' id='13d'></div></div>
+    <div class='cell' id='14'><div class='dot' id='14d'></div></div>
+    <div class='cell' id='15'><div class='dot' id='15d'></div></div>
+    <div class='cell' id='16'><div class='dot' id='16d'></div></div>
+    <div class='celloob' id='17' onclick="someoneplays(17)"></div> <!-- out of board-->
+    <!-- 2 -->
+    <div class='celloob' id='20' onclick="someoneplays(20)"></div> <!-- out of board-->
+    <div class='cell' id='21'><div class='dot' id='21d'></div></div>
+    <div class='cell' id='22'><div class='dot' id='22d'></div></div>
+    <div class='cell' id='23'><div class='dot' id='23d'></div></div>
+    <div class='cell' id='24'><div class='dot' id='24d'></div></div>
+    <div class='cell' id='25'><div class='dot' id='25d'></div></div>
+    <div class='cell' id='26'><div class='dot' id='26d'></div></div>
+    <div class='celloob' id='27' onclick="someoneplays(27)"></div> <!-- out of board-->
+    <!-- 3 -->
+    <div class='celloob' id='30' onclick="someoneplays(30)"></div> <!-- out of board-->
+    <div class='cell' id='31'><div class='dot' id='31d'></div></div>
+    <div class='cell' id='32'><div class='dot' id='32d'></div></div>
+    <div class='cell' id='33'><div class='dot' id='33d'></div></div>
+    <div class='cell' id='34'><div class='dot' id='34d'></div></div>
+    <div class='cell' id='35'><div class='dot' id='35d'></div></div>
+    <div class='cell' id='36'><div class='dot' id='36d'></div></div>
+    <div class='celloob' id='37' onclick="someoneplays(37)"></div> <!-- out of board-->
+    <!-- 4 -->
+    <div class='celloob' id='40' onclick="someoneplays(40)"></div> <!-- out of board-->
+    <div class='cell' id='41'><div class='dot' id='41d'></div></div>
+    <div class='cell' id='42'><div class='dot' id='42d'></div></div>
+    <div class='cell' id='43'><div class='dot' id='43d'></div></div>
+    <div class='cell' id='44'><div class='dot' id='44d'></div></div>
+    <div class='cell' id='45'><div class='dot' id='45d'></div></div>
+    <div class='cell' id='46'><div class='dot' id='46d'></div></div>
+    <div class='celloob' id='47' onclick="someoneplays(47)"></div> <!-- out of board-->
+    <!-- 5 -->
+    <div class='celloob' id='50' onclick="someoneplays(50)"></div> <!-- out of board-->
+    <div class='cell' id='51'><div class='dot' id='51d'></div></div>
+    <div class='cell' id='52'><div class='dot' id='52d'></div></div>
+    <div class='cell' id='53'><div class='dot' id='53d'></div></div>
+    <div class='cell' id='54'><div class='dot' id='54d'></div></div>
+    <div class='cell' id='55'><div class='dot' id='55d'></div></div>
+    <div class='cell' id='56'><div class='dot' id='56d'></div></div>
+    <div class='celloob' id='57' onclick="someoneplays(57)"></div> <!-- out of board-->
+    <!-- 6 -->
+    <div class='celloob' id='60' onclick="someoneplays(60)"></div> <!-- out of board-->
+    <div class='cell' id='61'><div class='dot' id='61d'></div></div>
+    <div class='cell' id='62'><div class='dot' id='62d'></div></div>
+    <div class='cell' id='63'><div class='dot' id='63d'></div></div>
+    <div class='cell' id='64'><div class='dot' id='64d'></div></div>
+    <div class='cell' id='65'><div class='dot' id='65d'></div></div>
+    <div class='cell' id='66'><div class='dot' id='66d'></div></div>
+    <div class='celloob' id='67' onclick="someoneplays(67)"></div> <!-- out of board-->
+    <!-- 7 (out of board) -->
+    <div class='celloobnotusable' id='70'></div> <!-- not even usable -->
+    <div class='celloob' id='71' onclick="someoneplays(71)"></div>
+    <div class='celloob' id='72' onclick="someoneplays(72)"></div>
+    <div class='celloob' id='73' onclick="someoneplays(73)"></div>
+    <div class='celloob' id='74' onclick="someoneplays(74)"></div>
+    <div class='celloob' id='75' onclick="someoneplays(75)"></div>
+    <div class='celloob' id='76' onclick="someoneplays(76)"></div>
+    <div class='celloobnotusable' id='77'></div> <!-- not even usable -->
+</div>
+</body>
+<script type="text/javascript" src="js/functions.js"></script>
+<script type="text/javascript" src="js/objects.js"></script>
+<script type="text/javascript" src="js/main.js"></script>
+
+<p>wer ist am Zug: </p> <p id='whoseturn'>Green</p>
+
+</html lang="de">
