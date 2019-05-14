@@ -1,18 +1,35 @@
-function block(color, turned) {
-    this.color = color;
-    this.turned = turned;
+class Block {
+        constructor(color, turned) {
+        this.color = color;
+        this.turned = turned;
 
-    this.flip = function() {
-        return this.turned = true;
+        this.flip = function() {
+            return this.turned = true;
+        }
     }
 }
-function player(hand, color, turn) {
-    this.hand = hand; 
-    this.color = color;
-    this.turn = turn;
+class Player {
+        constructor(hand, color, turn) {
+        this.hand = hand; 
+        this.color = color;
+        this.turn = turn;
 
-    this.playblock = function(inputloc) {
-        this.hand = moverow(inputloc, this.hand, this.color);
-        this.hand.flip();
+        this.playblock = function(inputloc) {
+            this.hand = moverow(inputloc, this.hand, this.color);
+            this.hand.flip();
+            if (this.hand.color === 1) {
+                document.getElementById("hand"+this.color).style.backgroundColor = "green";
+            }
+            else {
+                document.getElementById("hand"+this.color).style.backgroundColor = "yellow";
+            }
+        }
     }
 }
+/*
+class kiplayer extends player {
+        constructor() {
+            super();
+    }
+}
+*/

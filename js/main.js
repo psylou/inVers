@@ -8,11 +8,14 @@ var board = [];
 
 
 initializeBoard();
-var player1 = new player(new block(1, true), 1, true);
-var player2 = new player(new block(2, true), 2, false);
+var player1 = new Player(new Block(1, true), 1, true); //player1 with a startingblock, color and if its his turn
+var player2 = new Player(new Block(2, true), 2, false);
 
 
 
+
+/* DEBUG */
 
 console.log(board);
 console.log(player1.hand.color);
+

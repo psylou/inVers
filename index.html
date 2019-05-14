@@ -13,12 +13,10 @@
             margin: 0;
             font-family: sans-serif;
         }
-        div *{
+        #gameboard{
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-        }
-        #gameboard{
             max-height: 504px;
             max-width: 504px;
             width: 100%;
@@ -26,7 +24,10 @@
             position: relative;
             margin: 20px auto; 
         }
-        .cell, .celloob, .celloobnotusable{
+        .cell, .celloob, .celloobnotusable, .cellhand{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
             border: 1px solid rgba(82, 82, 82, 0.7);
             width: 100%;
             height: 100%;
@@ -40,6 +41,17 @@
             font-size: 30pt;
             z-index: 1;
             text-align: center;
+        }
+        .cellhandright {
+            box-align: right;
+            box-sizing: border-box;
+        }
+        .hand {
+            width: 100%;
+            height: 100%;
+            max-height: 55px;
+            max-width: 400px;
+            position: flex;
         }
         .celloob{
             background: rgba(136, 136, 136, 0.7);
@@ -142,11 +154,23 @@
     <div class='celloob' id='76' onclick="someoneplays(76)"></div>
     <div class='celloobnotusable' id='77'></div> <!-- not even usable -->
 </div>
-</body>
-<script type="text/javascript" src="js/functions.js"></script>
-<script type="text/javascript" src="js/objects.js"></script>
-<script type="text/javascript" src="js/main.js"></script>
 
-<p>wer ist am Zug: </p> <p id='whoseturn'>Green</p>
+<div class='hand'>
 
+    <div class='hand'>
+        <div class='cellhand' id='hand1'><p></p></div>
+        <div class='cellhand cellhandright' id='hand2'><p></p></div>
+    </div>
+
+    </body>
+    <script type="text/javascript" src="js/functions.js"></script>
+    <script type="text/javascript" src="js/objects.js"></script>
+    <script type="text/javascript" src="js/main.js"></script>
+    <script type="text/javascript" src="js/kiplayer.js"></script>
+
+    <div class='hand'>
+        <p>wer ist am Zug: </p> <p id='whoseturn'>Green</p>
+    </div>
+
+<div>
 </html lang="de">

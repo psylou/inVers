@@ -124,26 +124,26 @@ function initializeBoard(){ // This is the function to initialize the Board.
     function initializeRow(startcell){
         for(i = startcell; i < startcell+8; i++) {
             if(i == startcell || i == startcell+7 || i < 7 || i > 66) {
-                board[i] = new block(0, false);
+                board[i] = new Block(0, false);
                 styleblock(board[i], i);
             }
             else if(startcell % 20 == 0) {
                 if(i % 2 == 0) {
-                    board[i] = new block(1, false);
+                    board[i] = new Block(1, false);
                     styleblock(board[i], i);
                 }
                 else{
-                    board[i] = new block(2, false);
+                    board[i] = new Block(2, false);
                     styleblock(board[i], i);
                 }
             }
             else {
                 if(i % 2 == 0) {
-                    board[i] = new block(2, false);
+                    board[i] = new Block(2, false);
                     styleblock(board[i], i);
                 }
                 else{
-                    board[i] = new block(1, false);
+                    board[i] = new Block(1, false);
                     styleblock(board[i], i);
                 }
             }
@@ -153,5 +153,4 @@ function initializeBoard(){ // This is the function to initialize the Board.
     while(cellplus10 <= 70) {
         initializeRow(cellplus10);
         cellplus10 = cellplus10 + 10;
-    }
-}
+    }}
