@@ -10,26 +10,44 @@ class Block {
 }
 class Player {
         constructor(hand, color, turn) {
-        this.hand = hand; 
+        this.hand = hand;
         this.color = color;
         this.turn = turn;
 
         this.playblock = function(inputloc) {
             this.hand = moverow(inputloc, this.hand, this.color);
             this.hand.flip();
-            if (this.hand.color === 1) {
-                document.getElementById("hand"+this.color).style.backgroundColor = "green";
-            }
-            else {
-                document.getElementById("hand"+this.color).style.backgroundColor = "yellow";
-            }
+            changeHandColor(this.hand.color, this.color);
         }
     }
 }
-/*
-class kiplayer extends player {
-        constructor() {
-            super();
+
+
+class KI {
+    constructor(hand, color, turn) {
+        this.hand = hand;
+        this.color = color;
+        this.turn = turn;
+
+        this.playblock = function() {
+
+            function kicalc() {
+
+                let result = Math.floor(Math.random() * (77 - 11 + 1)) + 11;
+
+                if (board[result] != null) {
+                    console.log(result);
+                    return result;
+                }
+                else {
+                    kicalc();
+                }
+            }
+
+            this.hand = moverow(kicalc(), this.hand, this.color);
+            this.hand.flip();
+            changeHandColor(this.hand.color, this.color);
+        }
     }
 }
-*/
+
