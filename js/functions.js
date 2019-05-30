@@ -90,8 +90,6 @@ function switchplayerturn() { //this switches player on turn
         player1.turn = false;
         player2.turn = true;
 
-        player2.playblock(); //only if ki is playing
-
         playercolor = player2.color;
     }
     else if(player2.turn) {
@@ -115,12 +113,17 @@ function switchplayerturn() { //this switches player on turn
 function someoneplays(inputloc) {
     if(player1.turn) {
         player1.playblock(inputloc);
+        setTimeout(function(){
+            while(player2.turn) {
+                player2.playblock();
+            }
+        }, 2000);
     }
     else {
-        /* player2.playblock(inputloc); */ //this is for multiplayer. devs had to test the game to develop ai
-        alert("not your turn yet");
+        console.log("not your turn yet");
     }
 }
+
 
 function changeHandColor(handColor, color) {
 
