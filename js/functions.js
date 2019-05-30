@@ -110,19 +110,28 @@ function switchplayerturn() { //this switches player on turn
     }
 }
 
+
 function someoneplays(inputloc) {
     if(player1.turn) {
-        player1.playblock(inputloc);
+
+        player1.playblock();
+
         setTimeout(function(){
-            while(player2.turn) {
-                player2.playblock();
-            }
-        }, 2000);
+            someoneplays();
+        }, 10);
     }
     else {
-        console.log("not your turn yet");
+
+        player2.playblock();
+
+        setTimeout(function(){
+            someoneplays();
+        }, 10);
     }
 }
+
+
+
 
 
 function changeHandColor(handColor, color) {

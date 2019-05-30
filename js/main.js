@@ -8,9 +8,10 @@ let board = [];
 
 
 initializeBoard();
-let player1 = new Player(new Block(1, true), 1, true); //player1 with a startingblock, color and if its his turn
+let player1 = new KI(new Block(1, true), 1, true); //player1 with a startingblock, color and if its his turn
 let player2 = new KI(new Block(2, true), 2, false);
 
+KIvsKI();
 
 /* DEBUG */
 
