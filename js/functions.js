@@ -113,26 +113,47 @@ function switchplayerturn() { //this switches player on turn
 
 function someoneplays(inputloc) {
     if(player1.turn) {
-
-        player1.playblock();
-
-        setTimeout(function(){
-            someoneplays();
-        }, 10);
+        player1.playblock(inputloc);
     }
     else {
-
-        player2.playblock();
-
+        player2.playblock(inputloc);
+    }
+    if(!someoneWon()) {
         setTimeout(function(){
             someoneplays();
-        }, 10);
+        }, 1000);
     }
 }
 
+function countUnturned(color) {
+    let i = 11;
+    let count = 0;
+    while (i < 67) {
+        if (board[i] === undefined) {
+            i++;
+        }
+        else {
 
+            if (board[i].turned === false && board[i].color === color) {
+                count++;
+            }
+            i++;
+        }
+    }
+    console.log(count);
+    return count;
+}
 
-
+function someoneWon() {
+    if (countUnturned(2) === 0) {
+        alert("Grün gewinnt das Spiel")
+        return 1;
+    }
+    else if (countUnturned(1) === 0) {
+        alert("Gelb gewinnt das Spiel")
+        return 1;
+    }
+}
 
 function changeHandColor(handColor, color) {
 
@@ -142,7 +163,6 @@ function changeHandColor(handColor, color) {
     else {
         document.getElementById("hand"+color).style.backgroundColor = "yellow";
     }
-    console.log(handColor);
 }
 
 function initializeBoard(){ // This is the function to initialize the Board.
