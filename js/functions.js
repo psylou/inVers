@@ -118,7 +118,7 @@ function someoneplays(inputloc) {
     else {
         player2.playblock(inputloc);
     }
-    if(!someoneWon()) {
+    if(!someoneWon() && player2.turn) {
         setTimeout(function(){
             someoneplays();
         }, 1000);
