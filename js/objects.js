@@ -51,8 +51,9 @@ class KI {
             let maxMove = 0;
             let tempThis = this;
             this.AllValidMoves().forEach(function(move) {
-                    if(tempThis.getValuationNotTurned(move) > maxValuation){
-                        maxValuation = tempThis.getValuationNotTurned(move);
+                    let tempValuation = tempThis.getValuationNotTurned(move);
+                    if(tempValuation > maxValuation){
+                        maxValuation = tempValuation;
                         maxMove = move;
                     }
                 }
@@ -91,7 +92,7 @@ class KI {
             else if (r % 10 === 0 && r < 61 && r > 0) {
                 offset = 1;
             }
-            else if (r-7 % 10 === 0 && r < 70 && r > 0) {
+            else if ((r-7) % 10 === 0 && r < 70 && r > 0) {
                 offset = -1;
             }
             else if (r > 70 && r < 77) {
@@ -99,20 +100,20 @@ class KI {
             }
 
             for(let i = 1; i < 7; i++) {
-                if(board[r+(offset*i)].color === this.color) {                          //my color 1 point in row
-                    valuation=+2;
+                if(board[r+(offset*i)].color === this.color && !board[r+(offset*i)].turned) {                          //my color 1 point in row
+                    valuation = valuation+4;
                 }
                 else {                                                                  //enemy color -1 point in row
-                    valuation--;
+                   valuation--;
                 }
             }
             if (board[r+(offset*6)].color === this.color && board[r+(offset*6)].turned) {   //own turned stone drops out
-                valuation=-2;
+                valuation = valuation-3;
             }
             if (board[r+(offset*6)].color === this.color && !board[r+(offset*6)].turned) {  //own stone drops out
-                valuation++;
+                valuation = valuation+2;
             }
-            if (board[r+(offset*6)].color === !this.color && !board[r+(offset*6)].turned) {  //enemy stone drops out
+           if (board[r+(offset*6)].color !== this.color && !board[r+(offset*6)].turned) {  //enemy stone drops out
                 valuation--;
             }
 
