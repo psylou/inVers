@@ -18,9 +18,45 @@ function styleblock(block, cell) { //connection to html/css styling
         }
 }
 
+function validMove(r, player) {
+    if (r > 0 && r < 7) {
+        if (board[r+60].color !== player.color && board[r+60].turned) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+    else if (r % 10 === 0 && r < 61 && r > 0) {
+        if (board[r+6].color !== player.color && board[r+6].turned) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+    else if (r-7 % 10 === 0 && r < 70 && r > 0) {
+        if (board[r-6].color !== player.color && board[r-6].turned) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+    else if (r > 70 && r < 77) {
+        if (board[r-60].color !== player.color && board[r-60].turned) {
+            return 0;
+        }
+        else {
+            return 1;
+        }
+    }
+}
+
 function moverow(inputloc, inputblock, playercolor) { //function to insert block somewhere and move
     if(inputloc <= 0 || inputloc === 7 || inputloc === 70 || inputloc >= 77) {
         alert("you broke the game");
+        console.log("wrong block:" + inputloc);
         return inputblock;
     }
 
@@ -119,9 +155,7 @@ function someoneplays(inputloc) {
         player2.playblock(inputloc);
     }
     if(!someoneWon() && player2.turn) {
-        setTimeout(function(){
             someoneplays();
-        }, 1000);
     }
 }
 
@@ -140,17 +174,16 @@ function countUnturned(color) {
             i++;
         }
     }
-    console.log(count);
     return count;
 }
 
 function someoneWon() {
     if (countUnturned(2) === 0) {
-        alert("Grün gewinnt das Spiel")
+        alert("Gelb gewinnt das Spiel")
         return 1;
     }
     else if (countUnturned(1) === 0) {
-        alert("Gelb gewinnt das Spiel")
+        alert("Grün gewinnt das Spiel")
         return 1;
     }
 }
