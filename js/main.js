@@ -14,6 +14,6 @@ let player2 = new KI(new Block(2, true), 2, false);
 
 /* DEBUG */
 
-console.log(board)
+console.log(board);
 console.log(player1.hand.color);
 
