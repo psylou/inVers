@@ -154,11 +154,21 @@ function someoneplays(inputloc) {
     else {
         player2.playblock(inputloc);
     }
-    if(!someoneWon() && player2.turn) {
-        setTimeout(function(){
-            someoneplays();
-        }, 1000);
+    if (player1 instanceof KI && player1.turn) {
+        if(!someoneWon()) {
+            setTimeout(function(){
+                someoneplays();
+            }, timeout);
+        }
     }
+    else if(player2 instanceof KI && player2.turn){
+        if(!someoneWon()) {
+            setTimeout(function(){
+                someoneplays();
+            }, timeout);
+        }
+    }
+    someoneWon();
 }
 
 function countUnturned(color) {
@@ -182,10 +192,12 @@ function countUnturned(color) {
 function someoneWon() {
     if (countUnturned(2) === 0) {
         alert("Gelb gewinnt das Spiel");
+        initializeBoard();
         return 1;
     }
     else if (countUnturned(1) === 0) {
         alert("Grün gewinnt das Spiel");
+        initializeBoard();
         return 1;
     }
 }

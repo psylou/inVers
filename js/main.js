@@ -1,5 +1,6 @@
 let board = [];
 const allMoves = [1, 2, 3, 4, 5, 6, 10, 20, 30, 40, 50, 60, 71, 72, 73, 74, 75, 76, 17, 27, 37, 47, 57, 67];
+const timeout = 500;
 
 //my functions to edit board
 
